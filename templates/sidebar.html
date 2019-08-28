@@ -1,0 +1,37 @@
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Controller</h3>
+    </div>
+    <ul class="list-unstyled components">
+        {% if user.is_authenticated %}
+         <h3 class="user">{{ user.username }}</h3>
+
+        <li class="active">
+            <a href="#"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
+        </li>
+         <li>
+            <a href="{% url 'mytopology' %}"><i class="fas fa-chart-network"></i>Topology</a>
+        </li>
+        <li>
+            <a href="{% url 'device_list_view' %}">Switches</a>
+
+            <a href="#routers" data-toggle="collapse" aria-expanded="false">Routers</a>
+            <ul class="collapse list-unstyled" id="routers">
+                <li><a href="#">DHCP</a></li>
+                <li><a href="{% url 'rule_list' %}">Access Control Lists</a></li>
+            </ul>
+             <a href="#vpn" data-toggle="collapse" aria-expanded="false">VPN</a>
+            <ul class="collapse list-unstyled" id="vpn">
+                <li><a href="#">Site-to-Site</a></li>
+                <li><a href="#">Remote</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Statistics</a>
+        </li>
+         <li>
+             <a href="{% url 'logout' %}">logout</a>
+             {% endif %}
+        </li>
+    </ul>
+</nav>

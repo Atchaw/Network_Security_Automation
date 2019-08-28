@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+
+<title>My topology</title>
+
+{% block content %}
+
+	<link rel="stylesheet" href="{% static 'css/next.css' %}"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/next.js' %}"></script>
+
+
+	<div id="topology-container">
+    {% block javascript %}
+        <script type="text/javascript" src="{% static 'app/data.js' %}"></script>
+        <script type="text/javascript" src="{% static 'app/topology.js' %}"></script>
+        <script type="text/javascript" src="{% static 'app/main.js' %}"></script>
+    </div>
+        {% endblock %}
+{% endblock %}

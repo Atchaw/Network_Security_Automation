@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h2>Switche Details</h2>
+
+    {% block deviceDetails %}
+
+        <div>
+        {{ device.hostname }}
+        {{ device.username }}
+        {{ device.device_type }}
+        {{ device.description }}
+        </div>
+    {% endblock %}
+
+{% endblock %}

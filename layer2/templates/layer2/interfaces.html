@@ -1,0 +1,139 @@
+{% extends 'base.html' %} {% load static %} {% block content %} {% block interfaces %}
+
+<h1 class="page-header">Interfaces</h1>
+<table class="table" id="interface-table">
+    <thead style="background-color: #7386D5; color: white;">
+
+        <tr>
+            <th>#</th>
+            <th>name_int</th>
+            <th>Mac Address</th>
+            <th>Status</th>
+            <th>Mode</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for int in interfaces%}
+        <tr>
+            <td></td>
+            <td>{{ int.name_int }}</td>
+            <td>{{ int.mac }}</td>
+            {% if int.status == "up" %}
+            <td class="badge" style="background-color: #28a745">Up</td>
+            {% else %}
+            <td class="badge" style="background-color: #dc3545">Down</td>
+            {% endif %}
+            <td>{{ int.mode }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8" class="text-center bg-warning">No rule</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+<!-- Apply Port Security -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#port_security">Apply Port
+  Security</button>
+<!-- Modal -->
+<div class="modal fade" id="port_security" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Port security</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure Port Security
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'port_security' device.hostname  %}">
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Apply DHCP Snooping -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dhcpSnooping">Apply DHCP
+  Snooping</button>
+<!-- Modal -->
+<div class="modal fade" id="dhcpSnooping" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DHCP Snooping</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'dhcpSnooping' %}">
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Apply Arp Poising -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#arppoising">Apply Arp Poising</button>
+<!-- Modal -->
+<div class="modal fade" id="arppoising" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Arp Poising</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'arppoising' %}">
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Apply STP -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#stp">STP</button>
+<!-- Modal -->
+<div class="modal fade" id="stp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">STP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure STP
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'stp' %}">
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

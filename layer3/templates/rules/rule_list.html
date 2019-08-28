@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'rules/js/rules.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<div id="message" class="alert alert-success"  role="alert"></div>
+  <h1 class="page-header">Rules</h1>
+
+  <p>
+    <button type="button"  name="create"
+            class="btn btn-primary js-create-rule"
+            data-url="{% url 'rule_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New Rule
+    </button>
+  </p>
+  <table class="table" id="rule-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Number</th>
+        <th>SourceIP</th>
+        <th>DestinationIP</th>
+        <th>Protocl</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'rules/includes/partial_rule_list.html' %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-rule">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+{% endblock %}
