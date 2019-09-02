@@ -9,6 +9,4 @@ urlpatterns = [
     path('rules/create/', views.rule_create, name='rule_create'),
     path('rules/<int:pk>/update/', views.rule_update, name='rule_update'),
     path('rules/<int:pk>/delete/', views.rule_delete, name='rule_delete'),
-    #path('<str:host>/port_security/', views.port_security, name='port_security'),
-
 ]

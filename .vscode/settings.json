@@ -1,4 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "env/bin/python"
+    "python.pythonPath": "env/bin/python",
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+    ],
 }

@@ -69,20 +69,4 @@ def rule_delete(request, pk):
         data['html_form'] = render_to_string('rules/includes/partial_rule_delete.html',
                                              context, request=request)
     return JsonResponse(data)
-
-'''
-def dhcpSnooping(request):
-    print("--------------------dhcpSnooping------------------------------")
-    devices = Switch.objects.all()
-    trunk_interfaces = Interface.objects.filter(mode="Trunk")
-    print(trunk_interfaces)
-    for net_connect in connections.values():
-        for int in trunk_interfaces:
-            config_commands = ['ip dhcp snooping',
-                               f"int {int}",
-                               'ip dhcp snooping trust',
-                               ]
-            output = net_connect.send_config_set(config_commands)
-            print(output)
-    return render(request, "layer2/listDevices.html", {"devices": devices})
-'''
+    

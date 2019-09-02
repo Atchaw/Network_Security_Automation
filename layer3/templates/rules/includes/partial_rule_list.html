@@ -115,7 +115,7 @@
         <!-- Apply ACL -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dhcpSnooping">ACL</button>
         <!-- Modal -->
-        <div class="modal fade" id="dhcpSnooping" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal ftrade" id="dhcpSnooping" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
@@ -129,9 +129,10 @@
                     </div>
                     <section class="interfaces">
                         <form method="POST">
-                            {%csrf_token%} {% for int in interfaces %}
+                            {% for int in interfaces %}
                             <div class="int">
-                                {{f}}
+                                <input class="interface" id="{{ int.name_int}}" type="checkbox" name="interface" />
+                                <label class="label_int" for="{{ int.name_int}}">{{ int.name_int}}</label>
                             </div>
                             {% endfor %}
                             <div class="total int">
@@ -144,8 +145,8 @@
                             </div>
                         </form>
                     </section>
-                </div> <input class="interface" id="{{ int.name_int}}" type="checkbox" name="interface" />
-                <label class="label_int" </div>
+                </div>
+            </div>
         </div>
     </td>
 </tr>
