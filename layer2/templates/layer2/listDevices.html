@@ -1,131 +1,113 @@
-{% load staticfiles %}
-{% load static %}
+{% load staticfiles %} {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {% block title %}
-      <title>Home</title>
-  {% endblock %}
-  <!-- Bootstrap CSS CDN -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
-  <!-- for topology -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> {% block title %}
+    <title>Home</title>
+    {% endblock %}
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- for topology -->
 
-  <!-- Scrollbar Custom CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-<style>
-.devices a:hover {
-  font-size: 30px;
-  background: #f6f6f6;
-}
-
-.devices,.description{
-    display: inline-block;
-    margin: 30px;
-    vertical-align: top;
-}
-</style>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
-<body>
+    <style>
+        .devices a:hover {
+            font-size: 30px;
+            background: #f6f6f6;
+        }
+        
+        .devices,
+        .description {
+            display: inline-block;
+            margin: 30px;
+            vertical-align: top;
+        }
+    </style>
 
-  <div class="wrapper">
-    <!-- Sidebar-->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Controller</h3>
+
+
+    <body>
+
+        <div class="wrapper">
+            <!-- Sidebar-->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Controller</h3>
+                </div>
+                <ul class="list-unstyled components">
+                    {% if user.is_authenticated %}
+                    <h3 class="user">{{ user.username }}</h3>
+
+                    <li class="active">
+                        <a href="#"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'mytopology' %}"><i class="fas fa-chart-network"></i>Topology</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'device_list_view' %}">Switches</a>
+
+                        <a href="#routers" data-toggle="collapse" aria-expanded="false">Routers</a>
+                        <ul class="collapse list-unstyled" id="routers">
+                            <li><a href="{% url 'rule_list' %}">Access Control Lists</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">logout</a> {% endif %}
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content">
+
+                <div class=" devices" style="width: 40% ">
+                    <h2 class="list-group-item list-group-item-action " style="background-color: #7386D5; color: white">Switches</h2>
+
+                    {% for device in devices %}
+
+                    <a href="{% url 'device_get_interfaces' device.hostname %}" class="list-group-item list-group-item-action list-group-item-light" style="color: black" onmouseover="toggle_visibility('{{ device.ip_vlan }}')">{{ device.ip_vlan }}</a>                    {% endfor %}
+
+                </div>
+                <div class=" description" style="width: 40% ">
+                    <h2 class="list-group-item list-group-item-action " style="background-color: #7386D5; color: white">Description</h2>
+
+                    {% for device in devices %}
+                    <div class="{{ device.ip_vlan }} allC">
+                        <p id="{{ device.ip_vlan }}" class="list-group-item list-group-item-action list-group-item-light" style="color: black">
+                            {{ device.ip_vlan }}
+                            <br>{{ device.device_type }}
+                            <br>{{ device.device_type }}
+                        </p>
+                    </div>
+
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
         </div>
-        <ul class="list-unstyled components">
-            {% if user.is_authenticated %}
-             <h3 class="user">{{ user.username }}</h3>
-
-            <li class="active">
-                <a href="#"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
-            </li>
-             <li>
-                <a href="{% url 'mytopology' %}"><i class="fas fa-chart-network"></i>Topology</a>
-            </li>
-            <li>
-                <a href="#switches" data-toggle="collapse" aria-expanded="false">Switches</a>
-                <ul class="collapse list-unstyled" id="switches">
-                    <li><a href="{% url 'device_list_view' %}">Port security</a></li>
-                    <li><a href="#">Arp</a></li>
-                    <li><a href="#">STP</a></li>
-                </ul>
-                <a href="#routers" data-toggle="collapse" aria-expanded="false">Routers</a>
-                <ul class="collapse list-unstyled" id="routers">
-                    <li><a href="#">DHCP</a></li>
-                    <li><a href="{% url 'rule_list' %}">Access Control Lists</a></li>
-                </ul>
-                 <a href="#vpn" data-toggle="collapse" aria-expanded="false">VPN</a>
-                <ul class="collapse list-unstyled" id="vpn">
-                    <li><a href="#">Site-to-Site</a></li>
-                    <li><a href="#">Remote</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Statistics</a>
-            </li>
-             <li>
-                 <a href="{% url 'logout' %}">logout</a>
-                 {% endif %}
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Page Content  -->
-    <div id="content">
-
-      <div class=" devices" style="width: 40% ">
-      <h2 class="list-group-item list-group-item-action " style="background-color: #7386D5; color: white">Switches</h2>
-
-              {% for device in devices %}
-
-                      <a   href="{% url 'device_get_interfaces' device.hostname %}"
-                         class="list-group-item list-group-item-action list-group-item-light" style="color: black"
-                      onmouseover="toggle_visibility('{{ device.ip_vlan }}')">{{ device.ip_vlan }}</a>
-
-              {% endfor %}
-
-      </div>
-      <div class=" description" style="width: 40% ">
-      <h2 class="list-group-item list-group-item-action " style="background-color: #7386D5; color: white">Description</h2>
-
-              {% for device in devices %}
-                   <div class="{{ device.ip_vlan }} allC"><p id="{{ device.ip_vlan }}" class="list-group-item list-group-item-action list-group-item-light" style="color: black">
-                       {{ device.ip_vlan }}
-                       <br>{{ device.device_type }}
-                       <br>{{ device.device_type }}
-                   </p>
-                 </div>
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 
-              {% endfor %}
-
-      </div>
-
-    </div>
-  </div>
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-
-    {%block javascript%}
-    {%endblock%}
+        {%block javascript%} {%endblock%}
 
 
 
@@ -134,51 +116,51 @@
 
 
 
-</body>
+    </body>
 
 
 
 
-<script>
-(function(){
-  var x = document.getElementsByClassName('allC');
-  for(var i=0; i<x.length; i++) {
-    x[i].style.display = "none";
-  }
-})();
-</script>
-<script type="text/javascript">
-     function toggle_visibility(c) {
-       var h = document.getElementsByClassName('allC');
-       for(var i=0; i<h.length; i++) {
-         h[i].style.display = "none";
-       }
-       var x = document.getElementsByClassName(c);
-       for(var i=0; i<x.length; i++) {
-       if (x[i].style.display == "") {
-         x[i].style.display = "none";
-       } else {
-         x[i].style.display = "";
-       }
-     }
-     }
-</script>
+    <script>
+        (function() {
+            var x = document.getElementsByClassName('allC');
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+        })();
+    </script>
+    <script type="text/javascript">
+        function toggle_visibility(c) {
+            var h = document.getElementsByClassName('allC');
+            for (var i = 0; i < h.length; i++) {
+                h[i].style.display = "none";
+            }
+            var x = document.getElementsByClassName(c);
+            for (var i = 0; i < x.length; i++) {
+                if (x[i].style.display == "") {
+                    x[i].style.display = "none";
+                } else {
+                    x[i].style.display = "";
+                }
+            }
+        }
+    </script>
 
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#sidebar").mCustomScrollbar({
-            theme: "minimal"
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+
+
         });
-
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-
-
-    });
-</script>
+    </script>
 
 </html>
