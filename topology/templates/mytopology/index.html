@@ -1,77 +1,20 @@
-{% load staticfiles %} {% load static %}
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %} {% load staticfiles %} {% load static %}
 
-<head>
+<title>My topology</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> {% block title %}
-    <title>Home</title>
-    {% endblock %}
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <!-- for topology -->
+{% block content %}
 
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <body>
-
-        <div class="wrapper">
-            <!-- Sidebar-->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Controller</h3>
-                </div>
-                <ul class="list-unstyled components">
-                    {% if user.is_authenticated %}
-                    <h3 class="user">{{ user.username }}</h3>
-
-                    <li class="active">
-                        <a href="#"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'mytopology' %}"><i class="fas fa-chart-network"></i>Topology</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'device_list_view' %}">Switches</a>
-
-                        <a href="#routers" data-toggle="collapse" aria-expanded="false">Routers</a>
-                        <ul class="collapse list-unstyled" id="routers">
-                            <li><a href="{% url 'rule_list' %}">Access Control Lists</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{% url 'logout' %}">logout</a> {% endif %}
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- Page Content  -->
-            <div id="content">
-
-                {% block content %}
-
-                <link rel="stylesheet" href="{% static 'css/next.css' %}" />
-                <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-                <script src="http://d3js.org/d3.v3.min.js"></script>
-                <script src="http://d3js.org/topojson.v1.min.js"></script>
-                <script type="text/javascript" src="{% static 'js/next.js' %}"></script>
-
-                {% block javascript %}
-                <div id="topology-container">
-                    <script type="text/javascript" src="{% static 'app/data.js' %}"></script>
-                    <script type="text/javascript" src="{% static 'app/topology.js' %}"></script>
-                    <script type="text/javascript" src="{% static 'app/main.js' %}"></script>
-                </div>
-                {% endblock %} {% endblock %}
-            </div>
-
-    </body>
+<link rel="stylesheet" href="{% static 'css/next.css' %}" />
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/next.js' %}"></script>
 
 
-</html>
+<div id="topology-container">
+    <script type="text/javascript" src="{% static 'app/data.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/topology.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/main.js' %}"></script>
+</div>
+
+{% endblock %}

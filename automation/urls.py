@@ -9,5 +9,5 @@ urlpatterns = [
     path('layer2/', include('layer2.urls')),
     path('layer3/', include('layer3.urls')),
     path('mytopology/', include('topology.urls')),
-
+    
   ]

@@ -20,8 +20,8 @@
                     // property name to identify unique nodes
                     'identityKey': 'id', // helps to link source and target
                     // canvas size
-                    'width': 1290,
-                    'height': 620,
+                    'width': 1100,
+                    'height': 625,
                     // "engine" that process topology prior to rendering
                     'dataProcessor': 'force',
                     // moves the labels in order to avoid overlay
@@ -31,7 +31,7 @@
                     // if true, two nodes can have more than one link
                     'supportMultipleLink': true,
                     // enable scaling
-                    "scalable": true
+                    "scalable": true,
                 });
             }
         }

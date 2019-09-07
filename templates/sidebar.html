@@ -6,8 +6,8 @@
         {% if user.is_authenticated %}
         <h3 class="user">{{ user.username }}</h3>
 
-        <li class="active">
-            <a href="#"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
+        <li>
+            <a href="{% url 'dashboard' %}"><i class="fa fa-fw fa-home"></i>Controller(Home)</a>
         </li>
         <li>
             <a href="{% url 'mytopology' %}"><i class="fas fa-chart-network"></i>Topology</a>
