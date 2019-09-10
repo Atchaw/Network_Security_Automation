@@ -8,7 +8,7 @@ class LoginForm(forms.Form):
 
 
 	def __init__(self):
-        self.fields['username'].widget.attrs.update({'autofocus': 'autofocus'
+        self.fields['username'].widget.attrs.update({'autofocus': 'autofocus',
             'required': 'required', 'placeholder': 'User Name'})
         self.fields['password'].widget.attrs.update({
             'required': 'required', 'placeholder': 'Password'})

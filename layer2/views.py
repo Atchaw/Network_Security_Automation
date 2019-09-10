@@ -125,7 +125,6 @@ def dhcpSnooping(request):
     print("--------------------dhcpSnooping------------------------------")
     devices = Switch.objects.all()
     trunk_interfaces = Interface.objects.filter(mode="Trunk")
-    print(trunk_interfaces)
     for net_connect in connections.values():
         for int in trunk_interfaces:
             config_commands = ['ip dhcp snooping',

@@ -3,14 +3,11 @@ from django.urls import reverse
 
 
 class Device(models.Model):
-   
     username = models.CharField(max_length=30)
     hostname = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     device_type = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
-
-
 
 class Switch(Device):
     # ID
@@ -43,4 +40,3 @@ class Interface(models.Model):
 
     def __str__(self):
         return str(self.name_int)
-

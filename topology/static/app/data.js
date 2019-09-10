@@ -1,6 +1,6 @@
 var topologyData = null;
 
-url = 'http://localhost:8000/mytopology/data/'
+url = 'http://localhost:8001/mytopology/data/'
 
 $.ajax({
     url: url,
