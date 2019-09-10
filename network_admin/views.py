@@ -8,7 +8,7 @@ from layer3.models import Router
 def dashboard(request):
     router = Router.objects.count()
     switch = Switch.objects.count()
-    return render(request, 'dashboard.html', {'section': 'dashboard', 'router': router, "switch": switch
+    return render(request, 'dashboard.html', {'section': 'dashboard', 'router': router, "switch": switch})
 
 def connect(request):
     views.connect(request)
