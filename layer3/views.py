@@ -9,7 +9,6 @@ from .models import Rule, Router, InterfaceRouter
 def rule_list(request):
     rules = Rule.objects.all()
     interfaces = InterfaceRouter.objects.all()
-    print(interfaces)
     return render(request, 'rules/rule_list.html', {'rules': rules,
                                                     "interfaces": interfaces})
 
