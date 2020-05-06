@@ -20,7 +20,9 @@ We created a network topology using emulation tools (GNS3), connected this topol
 </ul>
 <br/>
 <h2>Conception:</h2>
-<img src="image/diagramme use case.jpg" alt="diagramme use case"/>
-<img src="image/" alt=""/>
+<img src="image/diagramme use case.jpg" alt="Use case diagram" id="Use_case_diagram"/>
+<label for="Use_case_diagram">Use case diagram</label>
+<img src="image/diagramme de classe.jpg" alt="Class diagram" id="Class_diagram"/>
+<label for="Class_diagram">Class diagram</label>
 <img src="image/" alt=""/>
 <img src="image/" alt=""/>
