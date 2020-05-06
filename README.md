@@ -19,7 +19,6 @@ We created a network topology using emulation tools (GNS3), connected this topol
   <li>CiscoDevNet/NeXt</li>
   <li>GNS3</li>
 </ul>
-<br/>
 <h2>Conception:</h2>
 <br/>
 <img src="image/diagramme use case.jpg" alt="Use case diagram" id="Use_case_diagram"/>
