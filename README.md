@@ -24,7 +24,7 @@ We created a network topology using emulation tools (GNS3), connected this topol
 <label for="Use_case_diagram" style="align: center; text-align:center;">Use case diagram</label>
 <br/>
 <img src="image/diagramme de classe.jpg" alt="Class diagram" id="Class_diagram"/>
-<label for="Class_diagram" style="align: center; text-align:center;">Class diagram</label>
+<span style="align: center; text-align:center;">Class diagram</span>
 <br/>
 <h2>Framework Overview:</h2>
 <img src="image/1.jpg" alt="Topology Display"/>
